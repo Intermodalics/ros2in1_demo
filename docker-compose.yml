@@ -1,0 +1,22 @@
+
+services:
+  ros2in1_demo:
+    build:
+      dockerfile: docker/Dockerfile
+      args:
+        - USER_NAME=${USER:-ubuntu}
+        - UID=${UID:-1000}
+    command: /bin/tail -f /dev/null
+    working_dir: ${PWD}
+    volumes:
+      - ./:${PWD}
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/localtime:/etc/localtime
+      - /etc/machine-id:/etc/machine-id
+      - /etc/timezone:/etc/timezone
+      - ${XAUTHORITY:-$HOME/.Xauthority}:${HOME}/.Xauthority:ro
+    environment:
+      - WORKSPACE=${PWD}
+      - DISPLAY
+      - XAUTHORITY=${HOME}/.Xauthority
+    restart: no
