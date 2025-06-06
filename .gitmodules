@@ -1,6 +1,6 @@
 [submodule "external/ros_tutorials"]
 	path = external/ros_tutorials
-	url = https://github.com/ros/ros_tutorials.git
+	url = git@github.com:Intermodalics/ros_tutorials.git
 [submodule "external/ros2in1_support"]
 	path = external/ros2in1_support
 	url = git@github.com:Intermodalics/ros2in1_support.git

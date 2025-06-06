@@ -21,6 +21,7 @@ RUN rm /etc/apt/sources.list.d/ros1-latest.list \
       ros-noetic-tf2 \
       ros-noetic-tf2-geometry-msgs \
       ros-galactic-ros-base \
+      ros-galactic-turtlesim \
     && git clone -b noetic-devel https://github.com/ros/ros_tutorials.git /tmp/ros_tutorials \
     && /opt/ros/noetic/env.sh rosdep update \
     && /opt/ros/noetic/env.sh rosdep install -y --ignore-src --from-paths /tmp/ros_tutorials \
