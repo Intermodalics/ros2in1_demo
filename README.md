@@ -1,7 +1,8 @@
 
 # `ros2in1` demo
 
-This package contains a demo to prove usage of `ros2in1_support` package.
+This package contains a demo to prove usage of
+[`ros2in1_support`](https://github.com/Intermodalics/ros2in1_support) package.
 The tool aids the transition from ROS 1 to ROS 2.
 
 ## Overview
@@ -66,6 +67,81 @@ command may provide the correct environment:
 ```shell
 docker compose run --rm -it ros2in1_demo bash
 ```
+
+## Building
+
+With a terminal within the demo environment, after following the steps of the
+previous section, the code can be built with:
+
+```shell
+source /opt/ros/noetic/setup.bash
+ROS2_DISTRO=galactic catkin build --cmake-args -DROS2_SUPPORT=ON -DRMW_IMPLEMENTATION=rmw_cyclonedds_cpp
+```
+
+## Testing
+
+Once built the ROS 1 workspace, the example `turtlesim` is ready to publish both
+in ROS 1 and ROS 2.
+
+Let's open two terminals within the demo environment, something like:
+
+```shell
+# Substitute <uuid> by the UUID assigned by Docker to the demo container
+docker exec -it demo-ros2in1_demo-run-<uuid> bash
+```
+
+In the first demo environment terminal, issue:
+
+```shell
+source /opt/ros/galactic/setup.bash
+source ./devel/setup.bash
+roslaunch turtlesim multisim.launch
+```
+
+In the second demo environment terminal, issue:
+
+```shell
+source /opt/ros/galactic/setup.bash
+ros2 topic list
+```
+
+The ROS 2 topics published by the demo should be listed, e.g.:
+
+```log
+ros2in1/ros2in1_demo$ ros2 topic list
+/parameter_events
+/rosout
+/turtlesim1/turtle1/color_sensor
+/turtlesim1/turtle1/pose
+/turtlesim2/turtle1/color_sensor
+/turtlesim2/turtle1/pose
+```
+
+These topics can be subscribed by any newer ROS 2 node.
+The topics are also available in ROS 1. Let's use a new terminal without ROS 2
+environment contamination.
+
+```shell
+source ./devel/setup.bash
+rostopic list
+```
+
+This would be a correct output:
+
+```log
+ros2in1/ros2in1_demo$ rostopic list
+/rosout
+/rosout_agg
+/turtlesim1/turtle1/cmd_vel
+/turtlesim1/turtle1/color_sensor
+/turtlesim1/turtle1/pose
+/turtlesim2/turtle1/cmd_vel
+/turtlesim2/turtle1/color_sensor
+/turtlesim2/turtle1/pose
+```
+
+These topics can be subscribed as usual by the rest of the ROS 1 application
+pending migration.
 
 ## Q&A
 
