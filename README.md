@@ -5,6 +5,9 @@ This package contains a demo to prove usage of
 [`ros2in1_support`](https://github.com/Intermodalics/ros2in1_support) package.
 The tool aids the transition from ROS 1 to ROS 2.
 
+**Note**:
+Remember to fetch submodules by `git submodule update --init --recursive`.
+
 ## Overview
 
 This repository is an example of how `turtlesim` from
