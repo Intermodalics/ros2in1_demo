@@ -376,15 +376,15 @@ The structure of the file is as follows:
 
 1. Add headers of both ROS 1 and ROS 2 interfaces
 2. Messages
-  a. Forward declaration of the structure `Ros2MessageType`
-  b. Specialization of the trait `Ros2MessageType::type` for every message
-  c. Definitions of template function `convert_2_to_1<>` specialization for every message
-  d. Definitions of template function `convert_1_to_2<>` specialization for every message
+  * a. Forward declaration of the structure `Ros2MessageType`
+  * b. Specialization of the trait `Ros2MessageType::type` for every message
+  * c. Definitions of template function `convert_2_to_1<>` specialization for every message
+  * d. Definitions of template function `convert_1_to_2<>` specialization for every message
 3. Services
-  a. Forward declaration of the structure `Ros2ServiceType`
-  b. Specialization of the trait `Ros2ServiceType::type` for every type
-  c. Definitions of template function `convert_2_to_1<>` specialization for every request message
-  d. Definitions of template function `convert_1_to_2<>` specialization for every response message
+  * a. Forward declaration of the structure `Ros2ServiceType`
+  * b. Specialization of the trait `Ros2ServiceType::type` for every type
+  * c. Definitions of template function `convert_2_to_1<>` specialization for every request message
+  * d. Definitions of template function `convert_1_to_2<>` specialization for every response message
 
 These are manually defined, and the body of the template functions can rely on other `convert_x_to_y<>()` functions to facilitate conversions and avoid code duplication.
 
