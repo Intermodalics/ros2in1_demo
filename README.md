@@ -34,8 +34,8 @@ the elements required to it:
 └── src
     ├── ros1_package_a
     ├── ros1_package_b
-    ├── ros2in1_support -> ../external/ros2in1_support    # simlink
-    └── turtlesim -> ../external/ros_tutorials/turtlesim  # simlink
+    ├── ros2in1_support -> ../external/ros2in1_support    # symlink
+    └── turtlesim -> ../external/ros_tutorials/turtlesim  # symlink
 ```
 
 ## Docker in this repo
@@ -46,6 +46,14 @@ the most current ROS 1 installation the reader may have.
 On top of the base image, some requirements are installed, such as dependencies
 of the `turtlesim`, `catkin tools` for convenience, and a fresh `ros-galactic`
 installation, the latest in Ubuntu Focal on which `ros:noetic` is based.
+
+The combination of Ubuntu Focal with ROS 1 noetic and ROS 2 galactic is the most
+updated that can be used to work with an installation from sources. However,
+this combination is already outdated compared to the current state of development
+of ROS 2.
+
+The user is encouraged to use a more recent version of ROS 2, e.g. Jazzy with
+the current Ubuntu 24.04, even when that means to build ROS 1 from sources.
 
 ### Requirement
 
