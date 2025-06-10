@@ -1,5 +1,5 @@
 
-# `ros2in1` demo
+# ROS 2-in-1 demo
 
 This package contains a demo to prove usage of
 [`ros2in1_support`](https://github.com/Intermodalics/ros2in1_support) package.
@@ -28,7 +28,7 @@ the elements required to it:
 ├── docker
 ├── docker-compose.yml
 ├── external             # External projects
-│   ├── ros2in1_support  # ROS2in1 requirement
+│   ├── ros2in1_support  # ROS 2-in-1 requirement
 │   └── ros_tutorials    # Just an example of a ROS 1 app
 ├── README.md
 └── src
@@ -48,7 +48,7 @@ of the `turtlesim`, `catkin tools` for convenience, and a fresh `ros-galactic`
 installation, the latest in Ubuntu Focal on which `ros:noetic` is based.
 
 The combination of Ubuntu Focal with ROS 1 noetic and ROS 2 galactic is the most
-updated that can be used to work with an installation from sources. However,
+updated that can be used to work with an installation from `*.deb` binaries. However,
 this combination is already outdated compared to the current state of development
 of ROS 2.
 
@@ -248,7 +248,7 @@ The package that uses `ros2in1_support` needs to a) find that package, and 2) fi
 dependencies that contain ROS 2 symbols that will be added to the ROS 1 application.
 These symbols may be derived from interfaces, e.g. `geometry_msgs`, or by `rclcpp`, .e.g. `rclcpp::Node`.
 
-These two needs are covered by calling `find_package(ros2in1 REQUIRED COMPONENTS <depA> <depB> ...)`:
+These two needs are covered by calling `find_package(ros2in1_support REQUIRED COMPONENTS <depA> <depB> ...)`:
 
 ```cmake
 # Find ROS 2 packages
@@ -261,7 +261,7 @@ find_package(ros2in1_support REQUIRED COMPONENTS
 )
 ```
 
-The libraries or executables provided by the package that requires ROS2in1 support need to build 1) against `ros2in1_support` itself, and 2) against targets found by `ros2in1_support` from the ROS 2 packages.
+The libraries or executables provided by the package that requires `ros2in1_support` need to build 1) against `ros2in1_support` itself, and 2) against targets found by `ros2in1_support` from the ROS 2 packages.
 
 ```cmake
 include_directories(${ros2in1_support_INCLUDE_DIRS})
@@ -287,7 +287,7 @@ if(ROS2_SUPPORT)
 endif()
 ```
 
-Finally, because `tutlesim` package provides interfaces, although it goes against
+Finally, because `turtlesim` package provides interfaces, although it goes against
 [ROS 2 best practices about interfaces](https://docs.ros.org/en/jazzy/Tutorials/Beginner-Client-Libraries/Single-Package-Define-And-Use-Interface.html#background),
 this package also provides conversions between ROS 1 and ROS 2 types.
 Therefore, the newly added `include/turtlesim/conversions/turtlesim.h` file needs to be installed:
